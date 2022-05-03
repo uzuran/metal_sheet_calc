@@ -77,6 +77,6 @@ def register():
     # Blank line.
     Label(second_screen, text="").pack()
     Label(second_screen, text="Password").pack()
-    pass_entry = Entry(second_screen, textvariable=password)
+    pass_entry = Entry(second_screen, textvariable=password, show="*")
     pass_entry.pack()
     Button(second_screen, text="Register", width=10, height=1, command=register_users).pack()
