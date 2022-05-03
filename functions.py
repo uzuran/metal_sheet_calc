@@ -7,7 +7,7 @@ def main_screen():
     """This is the basic main_screen, with some parameters, labels, colors, buttons and screen main.loop() function"""
     global screen
     screen = Tk()
-    screen.geometry("500x500")
+    screen.geometry("350x200")
     screen.title("Metal sheet calculator.")
     Label(text="Please login!Or register.", bg="#d1dffa", width="300", height="2", font=("Calibri", 13)).pack()
 
@@ -26,7 +26,7 @@ def login():
     global third_screen
     third_screen = Toplevel(screen)
     third_screen.title("Please login !")
-    third_screen.geometry("500x500")
+    third_screen.geometry("350x450")
     Label(third_screen, text="Please login!", bg="#d1dffa", width="300", height="2", font=("Calibri", 13)).pack()
     # Blank line.
     Label(text="").pack()
@@ -53,7 +53,7 @@ def register():
     global second_screen
     """Add a new screen parameters at top of level main screen"""
     second_screen = Toplevel(screen)
-    second_screen.geometry("500x500")
+    second_screen.geometry("350x450")
     second_screen.title("Metal sheet calculator.")
 
     global user_name
@@ -76,6 +76,7 @@ def register():
     Label(second_screen, text="Password").pack()
     pass_entry = Entry(second_screen, textvariable=password, show="*")
     pass_entry.pack()
+    Label(second_screen, text="").pack()
     Button(second_screen, text="Register", width=10, height=1, command=register_users).pack()
 
 
