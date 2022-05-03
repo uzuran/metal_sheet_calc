@@ -79,7 +79,6 @@ def login_verify():
     user_name_v = user_name_verify.get()
     password_v = user_pass_verify.get()
 
-
     user_name_entry1.delete(0, END)
     user_pass_entry2.delete(0, END)
 
@@ -94,6 +93,23 @@ def login_verify():
         if password_v in verify:
             Label(third_screen, text="Login success!", fg="green",
                   font=("Calibri", 11)).pack()
+
+            forth_screen = Toplevel(third_screen)
+
+            # getting screen width and height of display
+            width = forth_screen.winfo_screenwidth()
+            height = forth_screen.winfo_screenheight()
+            # setting tkinter window size
+            forth_screen.geometry("%dx%d" % (width, height))
+            forth_screen.title("Metal sheet calculator.")
+
+            Label(forth_screen, text="Metal sheet calculator.", bg="#d1dffa", width="300", height="2",
+                  font=("Calibri", 13)).pack()
+
+            Label(forth_screen, text="Steel material.", bg="#b4b7b8", width="300", height="2",
+                  font=("Calibri", 13)).pack()
+
+
         else:
             Label(third_screen, text="Password was wrong!", fg="red",
                   font=("Calibri", 11)).pack()
