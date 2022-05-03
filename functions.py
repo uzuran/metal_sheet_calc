@@ -8,7 +8,7 @@ def main_screen():
     screen = Tk()
     screen.geometry("500x500")
     screen.title("Metal sheet calculator.")
-    Label(text="Please login!", bg="#d1dffa", width="300", height="2", font=("Calibri", 13)).pack()
+    Label(text="Please login!Or register.", bg="#d1dffa", width="300", height="2", font=("Calibri", 13)).pack()
 
     # Blank line.
     Label(text="").pack()
@@ -28,22 +28,27 @@ def login():
 def register_users():
     username_info = user_name.get()
     password_info = password.get()
-    # From str to bytes.
-    byte_pass = bytes(password_info, encoding='utf8')
-    # Generate salt.
-    salt = bcrypt.gensalt()
-    hashed = bcrypt.hashpw(byte_pass, salt)
 
-    file = open(username_info+"txt", "w")
-    file.write(username_info + "\n")
-    hashed_to_str = str(hashed)
-    file.write(hashed_to_str)
-    file.close()
+    if username_info.isalnum():
+        Label(second_screen, text="You can not have a numbers in name! ", fg="red",
+              font=("Calibri", 11)).pack()
+    else:
+        # From str to bytes.
+        byte_pass = bytes(password_info, encoding='utf8')
+        # Generate salt.
+        salt = bcrypt.gensalt()
+        hashed = bcrypt.hashpw(byte_pass, salt)
 
-    user_name_entry.delete(0, END)
-    pass_entry.delete(0, END)
+        file = open(username_info, "w")
+        file.write(username_info + "\n")
+        hashed_to_str = str(hashed)
+        file.write(hashed_to_str)
+        file.close()
 
-    Label(second_screen, text='Registration success.', fg="green", font=("Calibri", 11)).pack()
+        user_name_entry.delete(0, END)
+        pass_entry.delete(0, END)
+
+        Label(second_screen, text='Registration success.', fg="green", font=("Calibri", 11)).pack()
 
 
 # Add a new window for register users.
@@ -54,18 +59,16 @@ def register():
     second_screen.geometry("500x500")
     second_screen.title("Metal sheet calculator.")
 
-
     global user_name
     global password
     global user_name_entry
     global pass_entry
 
-
     # Add username, password string line.
     user_name = StringVar()
     password = StringVar()
 
-    Label(second_screen, text="Metal sheet calculator.", bg="#d1dffa", width="300", height="2",
+    Label(second_screen, text="Please enter your name and password.", bg="#d1dffa", width="300", height="2",
           font=("Calibri", 13)).pack()
     Label(second_screen, text="").pack()
     Label(second_screen, text="Username").pack()
