@@ -94,6 +94,7 @@ def login_verify():
             Label(third_screen, text="Login success!", fg="green",
                   font=("Calibri", 11)).pack()
 
+            # Add a forth main screen for calculate sheet material.
             forth_screen = Toplevel(third_screen)
 
             # getting screen width and height of display
@@ -106,8 +107,21 @@ def login_verify():
             Label(forth_screen, text="Metal sheet calculator.", bg="#d1dffa", width="300", height="2",
                   font=("Calibri", 13)).pack()
 
-            Label(forth_screen, text="Steel material.", bg="#b4b7b8", width="300", height="2",
+            # Blank line
+            Label(forth_screen, text="")
+
+            # Add label frame
+            labelframe = LabelFrame(forth_screen, text="Steel sheet material")
+            labelframe.pack(fill="both", expand="yes")
+
+            Label(labelframe, text="Steel material.", bg="#adc4c4", width="300", height="2",
                   font=("Calibri", 13)).pack()
+
+            # Add labels of structure of material
+            Label(labelframe, text="Material id:\t Thickness:\t Width(mm):\t Height(mm):\t"
+                                   " Actual material stuff:\t Laser 1-2:\t"
+                                   " Laser 3-4-5: "
+                                   "", bd=1, relief="sunken",  font=("Calibri", 13)).pack()
 
 
         else:
