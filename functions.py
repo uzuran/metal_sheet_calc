@@ -186,6 +186,11 @@ def login_verify():
             Label(forth_screen, text="Metal sheet calculator.", bg="#d1dffa", width="300", height="2",
                   font=("Calibri", 13)).pack()
 
+            # Check users,  who is log in.
+            user_name_label = user_name_v
+
+            Label(forth_screen, text=str(user_name_label) + " Is online now.", bg="green").pack(anchor="w")
+            # Add notebok of a materials.
             notebook = ttk.Notebook(forth_screen)
             notebook.pack(anchor='center')
 
