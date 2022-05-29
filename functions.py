@@ -223,12 +223,12 @@ def login_verify():
             steel_y = Label(my_frame1, text="1000")
             steel_y.grid(column=3, row=1)
 
-            # Material in storage.
+            # Material minus.
 
-            steel_storage = Label(my_frame1, text="Material in storage:")
-            steel_storage.grid(column=4, row=0)
-            steel_storage = Label(my_frame1, text="1000")
-            steel_storage.grid(column=4, row=1)
+            steel_minus = Label(my_frame1, text="btn - ")
+            steel_minus.grid(column=4, row=0)
+            steel_button = Button(my_frame1, text="-")
+            steel_button.grid(column=4, row=1)
 
             # Ordered material.
             def value_changed():
@@ -255,19 +255,25 @@ def login_verify():
 
             spin_box.grid(column=5, row=1)
 
-            # Laser 1- 2.
+            # Button +
 
-            steel_laser1 = Label(my_frame1, text="Laser 1 - 2:")
-            steel_laser1.grid(column=6, row=0)
+            steel_plus = Label(my_frame1, text="btn")
+            steel_plus.grid(column=6, row=0)
+            steel_button = Button(my_frame1, text="+", command=value_changed())
+            steel_button.grid(column=6, row=1)
+
+            # Laser 1-2.
+
+            steel_laser1 = Label(my_frame1, text="Laser 1-2:")
+            steel_laser1.grid(column=7, row=0)
             steel_laser1 = Label(my_frame1, text="0")
-            steel_laser1.grid(column=6, row=1)
+            steel_laser1.grid(column=7, row=1)
 
-            # Laser 3 - 4,5.
-
-            steel_laser3 = Label(my_frame1, text="Laser 3 - 4,5:")
-            steel_laser3.grid(column=7, row=0)
+            # Laser 2-3.
+            steel_laser3 = Label(my_frame1, text="Laser 3-4,5:")
+            steel_laser3.grid(column=8, row=0)
             steel_laser3 = Label(my_frame1, text="0")
-            steel_laser3.grid(column=7, row=1)
+            steel_laser3.grid(column=8, row=1)
 
             al_label = Label(my_frame2, text="Al material")
             spec_label = Label(my_frame3, text="Special")
