@@ -198,16 +198,84 @@ def login_verify():
             my_frame2 = Frame(notebook, width=500, height=500)
             my_frame3 = Frame(notebook, width=500, height=500)
 
-            steel_label = Label(my_frame1, text="Steel material")
-            steel_id = Label(my_frame1, text="id:")
+            # Steel id
+            steel_id = Label(my_frame1, text="ID:", )
+            steel_id.grid(row=0)
+            steel_id = Label(my_frame1, text="0116000")
+            steel_id.grid(row=1)
+            # Steel thickness
+            steel_thickness = Label(my_frame1, text="Thickness:", )
+            steel_thickness.grid(column=1, row=0)
+            steel_thickness = Label(my_frame1, text="1")
+            steel_thickness.grid(column=1, row=1)
+
+            # Steel X> mm
+
+            steel_x = Label(my_frame1, text="X>:", )
+            steel_x.grid(column=2, row=0)
+            steel_x = Label(my_frame1, text="2000")
+            steel_x.grid(column=2, row=1)
+
+            # Steel Y^ mm
+
+            steel_y = Label(my_frame1, text="Y^:", )
+            steel_y.grid(column=3, row=0)
+            steel_y = Label(my_frame1, text="1000")
+            steel_y.grid(column=3, row=1)
+
+            # Material in storage.
+
+            steel_storage = Label(my_frame1, text="Material in storage:")
+            steel_storage.grid(column=4, row=0)
+            steel_storage = Label(my_frame1, text="1000")
+            steel_storage.grid(column=4, row=1)
+
+            # Ordered material.
+            def value_changed():
+                current_get = current_value.get()
+                current_str = str(current_get)
+
+                file = open(current_str, "w")
+                file.write(current_str)
+                file.close()
+
+                print(current_value.get())
+
+            steel_ordered = Label(my_frame1, text="Ordered material:")
+            steel_ordered.grid(column=5, row=0)
+
+            current_value = StringVar(value=0)
+
+            spin_box = ttk.Spinbox(
+                my_frame1,
+                from_=0,
+                to=100,
+                textvariable=current_value,
+                )
+
+            spin_box.grid(column=5, row=1)
+
+            # Button for accept the value.
+            Button(text="Register", width="30", height="2", command=register)
+            # Laser 1- 2.
+
+            steel_laser1 = Label(my_frame1, text="Laser 1 - 2:")
+            steel_laser1.grid(column=6, row=0)
+            steel_laser1 = Label(my_frame1, text="0")
+            steel_laser1.grid(column=6, row=1)
+
+            # Laser 3 - 4,5.
+
+            steel_laser3 = Label(my_frame1, text="Laser 3 - 4,5:")
+            steel_laser3.grid(column=7, row=0)
+            steel_laser3 = Label(my_frame1, text="0")
+            steel_laser3.grid(column=7, row=1)
 
             al_label = Label(my_frame2, text="Al material")
             spec_label = Label(my_frame3, text="Special")
 
-            steel_label.pack(padx=5, pady=5)
             al_label.pack(padx=5, pady=5)
             spec_label.pack(padx=5, pady=5)
-            steel_id.pack(anchor="w")
 
             my_frame1.pack(padx=5, pady=5)
             my_frame2.pack(padx=5, pady=5)
@@ -215,7 +283,6 @@ def login_verify():
             notebook.add(my_frame1, text="Steel material")
             notebook.add(my_frame2, text="Aluminium material")
             notebook.add(my_frame3, text="Special material")
-
 
         else:
             Label(third_screen, text="Password was wrong!", fg="red",
