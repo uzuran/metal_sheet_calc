@@ -255,8 +255,6 @@ def login_verify():
 
             spin_box.grid(column=5, row=1)
 
-            # Button for accept the value.
-            Button(text="Register", width="30", height="2", command=register)
             # Laser 1- 2.
 
             steel_laser1 = Label(my_frame1, text="Laser 1 - 2:")
