@@ -201,7 +201,7 @@ def login_verify():
             # Steel id
             steel_id = Label(my_frame1, text="ID:", )
             steel_id.grid(row=0)
-            steel_id = Label(my_frame1, text="0116000")
+            steel_id = Label(my_frame1, text="St_1")
             steel_id.grid(row=1)
             # Steel thickness
             steel_thickness = Label(my_frame1, text="Thickness:", )
@@ -223,7 +223,7 @@ def login_verify():
             steel_y = Label(my_frame1, text="1000")
             steel_y.grid(column=3, row=1)
 
-            # Material minus.
+            # Button minus.
 
             steel_minus = Label(my_frame1, text="btn - ")
             steel_minus.grid(column=4, row=0)
@@ -231,35 +231,39 @@ def login_verify():
             steel_button.grid(column=4, row=1)
 
             # Ordered material.
-            def value_changed():
-                current_get = current_value.get()
-                current_str = str(current_get)
-
-                file = open(current_str, "w")
-                file.write(current_str)
-                file.close()
-
-                print(current_value.get())
+            def display_selected():
+                print(var.get())
 
             steel_ordered = Label(my_frame1, text="Ordered material:")
             steel_ordered.grid(column=5, row=0)
 
-            current_value = StringVar(value=0)
+            ordered_value = Label(my_frame1, text="1000")
+            ordered_value.grid(column=5, row=1, sticky=W)
 
-            spin_box = ttk.Spinbox(
+            # Spinbox
+            var = StringVar()
+            spin_box = Spinbox(
                 my_frame1,
+                textvariable=var,
                 from_=0,
-                to=100,
-                textvariable=current_value,
+                to=200,
+                width=5,
+                command=display_selected
                 )
 
-            spin_box.grid(column=5, row=1)
+            spin_box.grid(column=5, row=1, sticky=E)
 
-            # Button +
+            def add_to_data_text():
+                with open("St_1.txt", "w+") as f:
+                    var_get = var.get()
+                    f.write(str(var_get))
+                    f.close()
+
+            # Button plus
 
             steel_plus = Label(my_frame1, text="btn")
             steel_plus.grid(column=6, row=0)
-            steel_button = Button(my_frame1, text="+", command=value_changed())
+            steel_button = Button(my_frame1, text="+", command=add_to_data_text)
             steel_button.grid(column=6, row=1)
 
             # Laser 1-2.
