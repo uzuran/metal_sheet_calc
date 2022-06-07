@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import ttk
-
+import pickle
 
 def admin_screen(user_name_v, ):
     admin_screen = Toplevel()
@@ -89,14 +89,24 @@ def admin_screen(user_name_v, ):
     def get_from_var():
         print(variable.get())
 
-    ordered_value = Label(my_frame1, text="1000")
-    ordered_value.grid(column=5, row=1, sticky=W)
-
     def add_to_data_text():
-        with open("St_1_order", "w+") as f:
+        with open("st1.pickle", "wb") as f:
             var_get = variable.get()
-            f.write(str(var_get))
+            pickle.dump(var_get, f)
+            ordered_value.configure(text=var_get)
             f.close()
+
+    order_open = open("st1.pickle", "rb")
+    ordered = pickle.load(order_open)
+
+    try:
+        if ordered == "":
+            ordered = {}
+    except EOFError:
+        print("File empty ")
+
+    ordered_value = Label(my_frame1, text=str(ordered))
+    ordered_value.grid(column=5, row=1, sticky=W)
 
     def plus():
         a_file = open("St_1_order", "w+")
