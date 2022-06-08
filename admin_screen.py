@@ -87,7 +87,7 @@ def admin_screen(user_name_v, ):
     steel_ordered = Label(my_frame1, text="Ordered material:")
     steel_ordered.grid(column=5, row=0)
 
-    # Add
+    # Add numbers of ordered material at pickle datastorage.
     def add_to_order_pickle():
         try:
             with open("st1.pickle", "wb") as f:
@@ -105,7 +105,13 @@ def admin_screen(user_name_v, ):
     # Add plus function, for addition material at order.
     def plus():
         try:
-            pass
+            order_pickle = open("st1.pickle", "rb")
+            from_pickle = pickle.load(order_pickle)
+            total = from_pickle + variable.get()
+
+            with open("st1.pickle", "wb") as w:
+                pickle.dump(total, w)
+                ordered_value.configure(text=total)
 
         except Exception as ex:
             print("Error during unpickling object (Possibly unsupported):", ex)
