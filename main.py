@@ -16,7 +16,8 @@ class MainFrame(ttk.Frame):
         enter_label_options = {"text": "Please login, or register.",
                                 "bg": "#d1dffa",
                                 "width": "300",
-                                "height": "2"}
+                                "height": "2",
+                                "font": "Calibri, 12"}
 
         # Enter label.
         self.enter_label = Label(self, **enter_label_options)
@@ -37,6 +38,7 @@ class MainFrame(ttk.Frame):
         btn_options_r = {"text": "Register",
                          "width": "30",
                          "height": "2"
+
                          }
 
         # Register button.
@@ -51,7 +53,7 @@ class MainFrame(ttk.Frame):
         # Function for open new window with registration.
     def register_click(self):
         self.register_window = Toplevel(frame)
-        self.register_window.geometry("350x300")
+        self.register_window.geometry("350x450")
         self.register_window.title("Metal sheet calculator.")
 
         # Global
@@ -69,7 +71,8 @@ class MainFrame(ttk.Frame):
             "text": "Please enter your name and password.",
             "bg": "#d1dffa",
             "width": "300",
-            "height": "2"
+            "height": "2",
+            "font": "Calibri, 12"
         }
 
         # Register window label.
@@ -87,6 +90,9 @@ class MainFrame(ttk.Frame):
         # Password label.
         pass_label = Label(self.register_window, text="Password")
         pass_label.pack()
+
+        # Blank line.
+        Label(self.register_window, text="").pack()
 
         # User password entry.
         pass_entry = Entry(self.register_window, textvariable=password, show="*")
@@ -113,7 +119,7 @@ class MainFrame(ttk.Frame):
         # If username have some numbers label send it on screen.
         options = {"text": "You can not have a numbers, or blank line in name!",
                    "fg": "red",
-                   "font": "Calibri, 11"}
+                   "font": "Calibri, 12"}
 
         if username_info.isdigit():
             no_num = Label(self.register_window, **options)
@@ -228,6 +234,7 @@ class MainFrame(ttk.Frame):
                 # Add next file with the func main screen,space for better reading code, main_work_screen.py.
                 admin_screen(user_name_v)
 
+
         elif user_name_v in list_of_users:
             file1 = open(user_name_v, "r")
             verify = file1.read().splitlines()
@@ -255,7 +262,7 @@ class App(tk.Tk):
         # configure the root window
         self.title("Metal sheet calculator.")
         self.geometry("350x200")
-        self.eval("tk::PlaceWindow . center")
+
 
 
 if __name__ == "__main__":

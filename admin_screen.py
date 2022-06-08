@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 import pickle
-
+from tkinter import messagebox as msg
 
 def admin_screen(user_name_v, ):
     admin_screen = Toplevel()
@@ -77,6 +77,8 @@ def admin_screen(user_name_v, ):
     steel_y.grid(column=3, row=1)
 
     def minus():
+        msg.askyesno(admin_screen)
+
         try:
             order_pickle = open("st1.pickle", "rb")
             from_pickle = pickle.load(order_pickle)
@@ -141,7 +143,7 @@ def admin_screen(user_name_v, ):
     spin_box.grid(column=5, row=1, sticky=E)
 
     # Label add material.
-    steel_plus = Label(my_frame1, text="add material")
+    steel_plus = Label(my_frame1, text="Add material:")
     steel_plus.grid(column=6, row=0)
 
     # Add material button.
