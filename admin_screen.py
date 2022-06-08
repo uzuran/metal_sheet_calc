@@ -27,7 +27,7 @@ def admin_screen(user_name_v, ):
     # Check users,  who is log in.
     user_name_label = user_name_v
 
-    check_user = Label(admin_screen, text=str(user_name_label) + " Is online now.", bg="green")
+    check_user = Label(admin_screen, text=str(user_name_label) + " Is log in now.", bg="green")
     check_user.pack(anchor="w")
 
     # Add notebok of a materials.
@@ -87,42 +87,37 @@ def admin_screen(user_name_v, ):
     steel_ordered = Label(my_frame1, text="Ordered material:")
     steel_ordered.grid(column=5, row=0)
 
-    def get_from_var():
-        print(variable.get())
 
-    def add_to_data_text():
-        with open("st1.pickle", "wb") as f:
-            var_get = variable.get()
-            pickle.dump(var_get, f)
-            ordered_value.configure(text=var_get)
-            f.close()
+    # Add
+    def add_to_order_pickle():
+        try:
+            with open("st1.pickle", "wb") as f:
+                var_get = variable.get()
+                pickle.dump(var_get, f)
+                ordered_value.configure(text=var_get)
+                f.close()
+        except Exception as ex:
+            print("Error during pickling object (Possibly unsupported):", ex)
 
     order_open = open("st1.pickle", "rb")
     ordered = pickle.load(order_open)
 
-    try:
-        if ordered == "":
-            ordered = {}
-    except EOFError:
-        print("File empty ")
-
     ordered_value = Label(my_frame1, text=str(ordered))
     ordered_value.grid(column=5, row=1, sticky=W)
 
+    # Add plus function, for addition material at order.
     def plus():
-        a_file = open("St_1_order", "w+")
-        file_data = a_file.read()
-        variable_g = variable.get()
+        try:
+            open_f = open("st1.pickle", "rb")
+            read_f = pickle.load(open_f)
+            total = variable.get() + read_f
+            with open("st1.pickle", "wb") as f:
+                pickle.dump(total, f)
+                ordered_value.configure(text=total)
+                f.close()
 
-        for line in a_file:
-            line_list = line.split()
-            for i in range(len(line_list)):
-                value_p = int(line_list[i]) + variable_g
-
-                replace = file_data.replace(value_p, a_file)
-                a_file.write(replace)
-
-        a_file.close()
+        except Exception as ex:
+            print("Error during unpickling object (Possibly unsupported):", ex)
 
     # Spinbox
     variable = IntVar()
@@ -132,7 +127,6 @@ def admin_screen(user_name_v, ):
         from_=0,
         to=200,
         width=5,
-        command=get_from_var
     )
     spin_box.grid(column=5, row=1, sticky=E)
 
@@ -143,11 +137,12 @@ def admin_screen(user_name_v, ):
     # Add material button.
     add_material_button = Button(my_frame1, text='add', width=5)
     # Command for button
-    add_material_button['command'] = add_to_data_text
+    add_material_button['command'] = add_to_order_pickle
     add_material_button.grid(column=6, row=1)
 
     # Button plus
     steel_plus = Label(my_frame1, text="btn")
     steel_plus.grid(column=7, row=0)
-    steel_button = Button(my_frame1, text="+", command=plus)
-    steel_button.grid(column=7, row=1)
+    steel_addition_button = Button(my_frame1, text="+")
+    steel_addition_button['command'] = plus
+    steel_addition_button.grid(column=7, row=1)

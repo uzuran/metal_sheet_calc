@@ -26,10 +26,10 @@ def main_work_space(user_name_v, ):
     # Check users,  who is log in.
     user_name_label = user_name_v
 
-    check_user = Label(main_work_screen, text=str(user_name_label) + " Is online now.", bg="green")
+    check_user = Label(main_work_screen, text=str(user_name_label) + " Is log in now..", bg="green")
     check_user.pack(anchor="w")
 
-    # Add notebok of a materials.
+    # Add notebook of a materials.
     notebook = ttk.Notebook(main_work_screen)
     notebook.pack(anchor='center')
 
@@ -110,3 +110,4 @@ def main_work_space(user_name_v, ):
     steel_plus.grid(column=6, row=0)
     steel_button = Button(my_frame1, text="+")
     steel_button.grid(column=6, row=1)
+
