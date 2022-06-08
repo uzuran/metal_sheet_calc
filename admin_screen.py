@@ -76,12 +76,16 @@ def admin_screen(user_name_v, ):
     steel_y = Label(my_frame1, text="1000")
     steel_y.grid(column=3, row=1)
 
+    def minus():
+        pass
+
     # Button minus.
 
     steel_minus = Label(my_frame1, text="btn - ")
     steel_minus.grid(column=4, row=0)
-    steel_button = Button(my_frame1, text="-")
-    steel_button.grid(column=4, row=1)
+    steel_decrease_button = Button(my_frame1, text="-")
+    steel_decrease_button['command'] = minus
+    steel_decrease_button.grid(column=4, row=1)
 
     # Ordered material.
     steel_ordered = Label(my_frame1, text="Ordered material:")
