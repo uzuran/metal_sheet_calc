@@ -77,20 +77,24 @@ def admin_screen(user_name_v, ):
     steel_y.grid(column=3, row=1)
 
     def minus():
-        msg.askyesno(admin_screen)
+        answer = msg.askyesno("Write off material",
+                              f"Are you sure that you want write off this {variable.get()} count of material?")
+        activator = True
+        if answer == activator:
 
-        try:
-            order_pickle = open("st1.pickle", "rb")
-            from_pickle = pickle.load(order_pickle)
-            total = from_pickle - variable.get()
+            try:
+                order_pickle = open("st1.pickle", "rb")
+                from_pickle = pickle.load(order_pickle)
+                total = from_pickle - variable.get()
 
-            with open("st1.pickle", "wb") as w:
-                pickle.dump(total, w)
-                ordered_value.configure(text=total)
+                with open("st1.pickle", "wb") as w:
+                    pickle.dump(total, w)
+                    ordered_value.configure(text=total)
 
-        except Exception as ex:
-            print("Error during unpickling object (Possibly unsupported):", ex)
-
+            except Exception as ex:
+                print("Error during unpickling object (Possibly unsupported):", ex)
+        else:
+            msg.showinfo(title="Write off canceling", message="Write off canceling you can back to work.")
     # Button minus.
     steel_minus = Label(my_frame1, text="btn - ")
     steel_minus.grid(column=4, row=0)

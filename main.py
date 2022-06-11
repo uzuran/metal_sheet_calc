@@ -235,7 +235,6 @@ class MainFrame(ttk.Frame):
                 # Add next file with the func main screen,space for better reading code, main_work_screen.py.
                 admin_screen(user_name_v)
 
-
         elif user_name_v in list_of_users:
             file1 = open(user_name_v, "r")
             verify = file1.read().splitlines()
