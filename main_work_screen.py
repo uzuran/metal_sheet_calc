@@ -92,7 +92,7 @@ def main_work_space(user_name_v, ):
     ordered_value = Label(my_frame1, text="1000")
     ordered_value.grid(column=5, row=1, sticky=W)
 
-    # Spinbox
+    # Spinbox.
     variable = IntVar()
     spin_box = ttk.Spinbox(
         my_frame1,
@@ -104,10 +104,11 @@ def main_work_space(user_name_v, ):
     )
     spin_box.grid(column=5, row=1, sticky=E)
 
-    # Button plus
-
+    # Button plus.
     steel_plus = Label(my_frame1, text="btn")
     steel_plus.grid(column=6, row=0)
     steel_button = Button(my_frame1, text="+")
     steel_button.grid(column=6, row=1)
+
+    # Material in storage.
 
