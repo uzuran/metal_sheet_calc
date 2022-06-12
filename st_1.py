@@ -121,12 +121,24 @@ def st1_line(my_frame1):
         steel_addition_button['command'] = plus
         steel_addition_button.grid(column=7, row=1)
 
+        # Add numbers of ordered material at pickle datastorage.
+        def add_to_storage():
+            try:
+                with open("st1_storage.pickle", "wb") as f:
+                    pickle.dump(material_in_str.get(), f)
+                    material_in_storage.configure(text=material_in_str.get())
+            except Exception as ex:
+                print("Error during pickling object (Possibly unsupported):", ex)
+
+        load_pickle = open("st1_storage.pickle", "rb")
+        material_in = pickle.load(load_pickle)
+
         # Label Material in storage.
         material_in_label = Label(my_frame1, text="Material in storage:")
         material_in_label.grid(column=8, row=0)
 
         # Material in storage.
-        material_in_storage = Label(my_frame1, text="1000")
+        material_in_storage = Label(my_frame1, text=material_in)
         material_in_storage.grid(column=8, row=1, sticky=W)
 
         # Spinbox order.
@@ -146,7 +158,7 @@ def st1_line(my_frame1):
         # Add material button.
         add_material_button = Button(my_frame1, text='add', width=5)
         # Command for button
-        add_material_button['command'] = add_to_order_pickle
+        add_material_button['command'] = add_to_storage
         add_material_button.grid(column=9, row=1)
 
         # Back to storage
@@ -156,7 +168,7 @@ def st1_line(my_frame1):
         back_to_storage['command'] = plus
         back_to_storage.grid(column=10, row=1)
 
-        # Write off the material from sotrage
+        # Write off the material from storage
         back_to_storage_label = Label(my_frame1, text="Write off")
         back_to_storage_label.grid(column=11, row=0)
         back_to_storage = Button(my_frame1, text="-")
