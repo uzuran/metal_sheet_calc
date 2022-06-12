@@ -43,10 +43,12 @@ def admin_screen(user_name_v, ):
     my_frame1 = Frame(notebook, ** frame_options)
     my_frame2 = Frame(notebook, ** frame_options)
     my_frame3 = Frame(notebook, ** frame_options)
+    my_frame4 = Frame(notebook, **frame_options)
 
     # Add notebook on screen.
     notebook.add(my_frame1, text="Steel material")
     notebook.add(my_frame2, text="Aluminium material")
-    notebook.add(my_frame3, text="Special material")
+    notebook.add(my_frame3, text="Stainless steel material")
+    notebook.add(my_frame4, text="Special material")
 
     st1_line(my_frame1)

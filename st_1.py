@@ -36,7 +36,7 @@ def st1_line(my_frame1):
 
         def minus():
             answer = msg.askyesno("Write off material",
-                                  f"Are you sure that you want write off this {variable.get()} count of material?")
+                                  f"Are you sure that you want write off this {variable.get()} item of material?")
             activator = True
             if answer == activator:
 
@@ -161,11 +161,34 @@ def st1_line(my_frame1):
         add_material_button['command'] = add_to_storage
         add_material_button.grid(column=9, row=1)
 
+        # Add plus function, for addition material at order.
+        def increase_material_in_str():
+            answer = msg.askyesno("Back to storage",
+                                  f"Are you sure that you want back {material_in_str.get()}"
+                                  f" item of material to the storage?")
+            activator = True
+            if answer == activator:
+
+                try:
+                    order_pickle = open("st1_storage.pickle", "rb")
+                    from_pickle = pickle.load(order_pickle)
+                    total = from_pickle + material_in_str.get()
+
+                    with open("st1_storage.pickle", "wb") as w:
+                        pickle.dump(total, w)
+                        material_in_storage.configure(text=total)
+
+                except Exception as ex:
+                    print("Error during unpickling object (Possibly unsupported):", ex)
+            else:
+                msg.showinfo(title="Back to storage canceling",
+                             message="Back to storage"
+                                     "canceling you can back to work.")
         # Back to storage
         back_to_storage_label = Label(my_frame1, text="Back to storage")
         back_to_storage_label.grid(column=10, row=0)
         back_to_storage = Button(my_frame1, text="+")
-        back_to_storage['command'] = plus
+        back_to_storage['command'] = increase_material_in_str
         back_to_storage.grid(column=10, row=1)
 
         # Write off the material from storage
