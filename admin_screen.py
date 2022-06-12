@@ -1,23 +1,21 @@
 from tkinter import *
 from tkinter import ttk
-import pickle
-from tkinter import messagebox as msg
 from st_1 import st1_line
 
 
-def admin_screen(user_name_v, ):
+def admin_screen(user_name_v):
     admin_screen = Toplevel()
-    admin_screen.title("Metal sheet calculator.")
+    admin_screen.title("Steel sheet calculator.")
 
     # getting screen width and height of display
     width = admin_screen.winfo_screenwidth()
     height = admin_screen.winfo_screenheight()
     # setting tkinter window size
     admin_screen.geometry("%dx%d" % (1000, 600))
-    admin_screen.title("Metal sheet calculator.")
+    admin_screen.title("Steel sheet calculator.")
 
     # Main label.
-    label_option = {"text": "Metal sheet calculator",
+    label_option = {"text": "Steel sheet calculator",
                     "bg": "#d1dffa",
                     "width": "300",
                     "height": "2",
@@ -52,3 +50,4 @@ def admin_screen(user_name_v, ):
     notebook.add(my_frame4, text="Special material")
 
     st1_line(my_frame1)
+

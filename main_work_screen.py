@@ -1,8 +1,11 @@
+import tkinter
 from tkinter import *
 from tkinter import ttk
+import pickle
+from tkinter import messagebox as msg
+from st_1 import st1_line
 
-
-def main_work_space(user_name_v, ):
+def main_work_space(user_name_v):
     main_work_screen = Toplevel()
     main_work_screen.title("Metal sheet calculator.")
 
@@ -11,10 +14,10 @@ def main_work_space(user_name_v, ):
     height = main_work_screen.winfo_screenheight()
     # setting tkinter window size
     main_work_screen.geometry("%dx%d" % (width, height))
-    main_work_screen.title("Metal sheet calculator.")
+    main_work_screen.title("Steel sheet calculator.")
 
     # Main label.
-    label_option = {"text": "Metal sheet calculator",
+    label_option = {"text": "Steel sheet calculator",
                     "bg": "#d1dffa",
                     "width": "300",
                     "height": "2",
@@ -40,11 +43,13 @@ def main_work_space(user_name_v, ):
     my_frame1 = Frame(notebook, ** frame_options)
     my_frame2 = Frame(notebook, ** frame_options)
     my_frame3 = Frame(notebook, ** frame_options)
+    my_frame4 = Frame(notebook, **frame_options)
 
     # Add notebook on screen.
     notebook.add(my_frame1, text="Steel material")
     notebook.add(my_frame2, text="Aluminium material")
-    notebook.add(my_frame3, text="Special material")
+    notebook.add(my_frame3, text="Stainless steel material")
+    notebook.add(my_frame4, text="Special material")
 
     # Steel id
     steel_id = Label(my_frame1, text="ID:", )
@@ -75,40 +80,19 @@ def main_work_space(user_name_v, ):
     steel_y = Label(my_frame1, text="1000")
     steel_y.grid(column=3, row=1)
 
-    # Button minus.
-
-    steel_minus = Label(my_frame1, text="btn - ")
-    steel_minus.grid(column=4, row=0)
-    steel_button = Button(my_frame1, text="-")
-    steel_button.grid(column=4, row=1)
-
     # Ordered material.
     steel_ordered = Label(my_frame1, text="Ordered material:")
     steel_ordered.grid(column=5, row=0)
 
-    def get_from_var():
-        print(variable.get())
+    load_pickle = open("st1.pickle", "rb")
+    load_order = pickle.load(load_pickle)
 
-    ordered_value = Label(my_frame1, text="1000")
-    ordered_value.grid(column=5, row=1, sticky=W)
+    ordered_value = Label(my_frame1, text=load_order)
+    ordered_value.grid(column=5, row=1)
 
-    # Spinbox.
-    variable = IntVar()
-    spin_box = ttk.Spinbox(
-        my_frame1,
-        textvariable=variable,
-        from_=0,
-        to=200,
-        width=5,
-        command=get_from_var
-    )
-    spin_box.grid(column=5, row=1, sticky=E)
+    def update():
+        ordered_value.after(1, update)
+        ordered_value.configure(text=str(load_order))
+    update()
 
-    # Button plus.
-    steel_plus = Label(my_frame1, text="btn")
-    steel_plus.grid(column=6, row=0)
-    steel_button = Button(my_frame1, text="+")
-    steel_button.grid(column=6, row=1)
-
-    # Material in storage.
 

@@ -54,7 +54,7 @@ class MainFrame(ttk.Frame):
     def register_click(self):
         self.register_window = Toplevel(frame)
         self.register_window.geometry("350x450")
-        self.register_window.title("Metal sheet calculator.")
+        self.register_window.title("Steel sheet calculator.")
 
         # Global
         global user_name
@@ -93,7 +93,6 @@ class MainFrame(ttk.Frame):
         # Password label.
         pass_label = Label(self.register_window, text="Password")
         pass_label.pack()
-
 
         # User password entry.
         pass_entry = Entry(self.register_window, textvariable=password, show="*")
@@ -260,7 +259,7 @@ class App(tk.Tk):
     def __init__(self):
         super().__init__()
         # configure the root window
-        self.title("Metal sheet calculator.")
+        self.title("Steel sheet calculator.")
         self.geometry("350x200")
         self.eval("tk::PlaceWindow . center")
 
@@ -269,3 +268,4 @@ if __name__ == "__main__":
     app = App()
     frame = MainFrame(app)
     app.mainloop()
+

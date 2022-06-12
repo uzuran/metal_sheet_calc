@@ -5,6 +5,7 @@ from tkinter import messagebox as msg
 
 
 def st1_line(my_frame1):
+
         # Steel id
         steel_id = Label(my_frame1, text="ID:", )
         steel_id.grid(row=0)
@@ -70,6 +71,7 @@ def st1_line(my_frame1):
                 with open("st1.pickle", "wb") as f:
                     pickle.dump(variable.get(), f)
                     ordered_value.configure(text=variable.get())
+
             except Exception as ex:
                 print("Error during pickling object (Possibly unsupported):", ex)
 
@@ -191,10 +193,30 @@ def st1_line(my_frame1):
         back_to_storage['command'] = increase_material_in_str
         back_to_storage.grid(column=10, row=1)
 
+        def write_off_material():
+            answer = msg.askyesno("Write off material",
+                                  f"Are you sure that you want write off this {material_in_str.get()} item of material?")
+            activator = True
+            if answer == activator:
+
+                try:
+                    order_pickle = open("st1_storage.pickle", "rb")
+                    from_pickle = pickle.load(order_pickle)
+                    total = from_pickle - material_in_str.get()
+
+                    with open("st1_storage.pickle", "wb") as w:
+                        pickle.dump(total, w)
+                        material_in_storage.configure(text=total)
+
+                except Exception as ex:
+                    print("Error during unpickling object (Possibly unsupported):", ex)
+            else:
+                msg.showinfo(title="Write off canceling", message="Write off canceling you can back to work.")
+
         # Write off the material from storage
         back_to_storage_label = Label(my_frame1, text="Write off")
         back_to_storage_label.grid(column=11, row=0)
         back_to_storage = Button(my_frame1, text="-")
-        back_to_storage['command'] = plus
+        back_to_storage['command'] = write_off_material
         back_to_storage.grid(column=11, row=1)
 
