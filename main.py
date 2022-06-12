@@ -265,7 +265,6 @@ class App(tk.Tk):
         self.eval("tk::PlaceWindow . center")
 
 
-
 if __name__ == "__main__":
     app = App()
     frame = MainFrame(app)
