@@ -93,7 +93,7 @@ def st1_line(my_frame1):
             except Exception as ex:
                 print("Error during unpickling object (Possibly unsupported):", ex)
 
-        # Spinbox
+        # Spinbox order.
         variable = IntVar()
         spin_box = ttk.Spinbox(
             my_frame1,
@@ -120,3 +120,46 @@ def st1_line(my_frame1):
         steel_addition_button = Button(my_frame1, text="+")
         steel_addition_button['command'] = plus
         steel_addition_button.grid(column=7, row=1)
+
+        # Label Material in storage.
+        material_in_label = Label(my_frame1, text="Material in storage:")
+        material_in_label.grid(column=8, row=0)
+
+        # Material in storage.
+        material_in_storage = Label(my_frame1, text="1000")
+        material_in_storage.grid(column=8, row=1, sticky=W)
+
+        # Spinbox order.
+        material_in_str = IntVar()
+        spin_box = ttk.Spinbox(
+            my_frame1,
+            textvariable=material_in_str,
+            from_=0,
+            to=200,
+            width=5,
+        )
+        spin_box.grid(column=8, row=1, sticky=E)
+
+        # Label add material.
+        steel_plus = Label(my_frame1, text="Add material to storage:")
+        steel_plus.grid(column=9, row=0)
+        # Add material button.
+        add_material_button = Button(my_frame1, text='add', width=5)
+        # Command for button
+        add_material_button['command'] = add_to_order_pickle
+        add_material_button.grid(column=9, row=1)
+
+        # Back to storage
+        back_to_storage_label = Label(my_frame1, text="Back to storage")
+        back_to_storage_label.grid(column=10, row=0)
+        back_to_storage = Button(my_frame1, text="+")
+        back_to_storage['command'] = plus
+        back_to_storage.grid(column=10, row=1)
+
+        # Write off the material from sotrage
+        back_to_storage_label = Label(my_frame1, text="Write off")
+        back_to_storage_label.grid(column=11, row=0)
+        back_to_storage = Button(my_frame1, text="-")
+        back_to_storage['command'] = plus
+        back_to_storage.grid(column=11, row=1)
+
