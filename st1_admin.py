@@ -4,7 +4,7 @@ import pickle
 from tkinter import messagebox as msg
 
 
-def st1_line(my_frame1):
+def st1_admin_line(my_frame1):
 
         # Steel id
         steel_id = Label(my_frame1, text="ID:", )
@@ -97,6 +97,7 @@ def st1_line(my_frame1):
 
         # Spinbox order.
         variable = IntVar()
+
         spin_box = ttk.Spinbox(
             my_frame1,
             textvariable=variable,
@@ -163,7 +164,7 @@ def st1_line(my_frame1):
         add_material_button['command'] = add_to_storage
         add_material_button.grid(column=9, row=1)
 
-        # Add plus function, for addition material at order.
+        # Add plus function, for addition material at storage.
         def increase_material_in_str():
             answer = msg.askyesno("Back to storage",
                                   f"Are you sure that you want back {material_in_str.get()}"
@@ -172,8 +173,8 @@ def st1_line(my_frame1):
             if answer == activator:
 
                 try:
-                    order_pickle = open("st1_storage.pickle", "rb")
-                    from_pickle = pickle.load(order_pickle)
+                    storage_pickle = open("st1_storage.pickle", "rb")
+                    from_pickle = pickle.load(storage_pickle)
                     total = from_pickle + material_in_str.get()
 
                     with open("st1_storage.pickle", "wb") as w:

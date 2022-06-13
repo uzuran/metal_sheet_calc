@@ -1,15 +1,12 @@
 from tkinter import *
 from tkinter import ttk
-from st_1 import st1_line
+from st1_admin import st1_admin_line
 
 
 def admin_screen(user_name_v):
     admin_screen = Toplevel()
     admin_screen.title("Steel sheet calculator.")
 
-    # getting screen width and height of display
-    width = admin_screen.winfo_screenwidth()
-    height = admin_screen.winfo_screenheight()
     # setting tkinter window size
     admin_screen.geometry("%dx%d" % (1000, 600))
     admin_screen.title("Steel sheet calculator.")
@@ -49,5 +46,5 @@ def admin_screen(user_name_v):
     notebook.add(my_frame3, text="Stainless steel material")
     notebook.add(my_frame4, text="Special material")
 
-    st1_line(my_frame1)
+    st1_admin_line(my_frame1)
 

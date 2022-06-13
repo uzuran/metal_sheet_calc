@@ -1,9 +1,8 @@
-import tkinter
 from tkinter import *
 from tkinter import ttk
 import pickle
 from tkinter import messagebox as msg
-from st_1 import st1_line
+from st1_user import st1_user_line
 
 def main_work_space(user_name_v):
     main_work_screen = Toplevel()
@@ -51,48 +50,8 @@ def main_work_space(user_name_v):
     notebook.add(my_frame3, text="Stainless steel material")
     notebook.add(my_frame4, text="Special material")
 
-    # Steel id
-    steel_id = Label(my_frame1, text="ID:", )
-    steel_id.grid(row=0)
+    # Add first line st1 steel material
+    st1_user_line(my_frame1, main_work_screen)
 
-    # Steel id
-    steel_id = Label(my_frame1, text="ID:", )
-    steel_id.grid(row=0)
-    steel_id = Label(my_frame1, text="0116000")
-    steel_id.grid(row=1)
-    # Steel thickness
-    steel_thickness = Label(my_frame1, text="Thickness:", )
-    steel_thickness.grid(column=1, row=0)
-    steel_thickness = Label(my_frame1, text="1")
-    steel_thickness.grid(column=1, row=1)
-
-    # Steel X> mm
-
-    steel_x = Label(my_frame1, text="X>:", )
-    steel_x.grid(column=2, row=0)
-    steel_x = Label(my_frame1, text="2000")
-    steel_x.grid(column=2, row=1)
-
-    # Steel Y^ mm
-
-    steel_y = Label(my_frame1, text="Y^:", )
-    steel_y.grid(column=3, row=0)
-    steel_y = Label(my_frame1, text="1000")
-    steel_y.grid(column=3, row=1)
-
-    # Ordered material.
-    steel_ordered = Label(my_frame1, text="Ordered material:")
-    steel_ordered.grid(column=5, row=0)
-
-    load_pickle = open("st1.pickle", "rb")
-    load_order = pickle.load(load_pickle)
-
-    ordered_value = Label(my_frame1, text=load_order)
-    ordered_value.grid(column=5, row=1)
-
-    def update():
-        ordered_value.after(1, update)
-        ordered_value.configure(text=str(load_order))
-    update()
 
 
