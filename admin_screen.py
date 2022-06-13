@@ -8,8 +8,9 @@ def admin_screen(user_name_v):
     admin_screen.title("Steel sheet calculator.")
 
     # setting tkinter window size
-    admin_screen.geometry("%dx%d" % (1000, 600))
+    admin_screen.geometry("1000x600")
     admin_screen.title("Steel sheet calculator.")
+    #admin_screen.iconbitmap('./assets/pythontutorial.ico')
 
     # Main label.
     label_option = {"text": "Steel sheet calculator",
@@ -46,5 +47,5 @@ def admin_screen(user_name_v):
     notebook.add(my_frame3, text="Stainless steel material")
     notebook.add(my_frame4, text="Special material")
 
-    st1_admin_line(my_frame1)
+    st1_admin_line(my_frame1, admin_screen)
 

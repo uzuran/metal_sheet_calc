@@ -4,16 +4,15 @@ import pickle
 from tkinter import messagebox as msg
 from st1_user import st1_user_line
 
+
 def main_work_space(user_name_v):
     main_work_screen = Toplevel()
     main_work_screen.title("Metal sheet calculator.")
 
-    # getting screen width and height of display
-    width = main_work_screen.winfo_screenwidth()
-    height = main_work_screen.winfo_screenheight()
     # setting tkinter window size
-    main_work_screen.geometry("%dx%d" % (width, height))
+    main_work_screen.geometry("1000x600")
     main_work_screen.title("Steel sheet calculator.")
+    #main_work_screen.iconbitmap('./assets/pythontutorial.ico')
 
     # Main label.
     label_option = {"text": "Steel sheet calculator",

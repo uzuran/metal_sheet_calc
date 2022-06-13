@@ -262,6 +262,8 @@ class App(tk.Tk):
         self.title("Steel sheet calculator.")
         self.geometry("350x200")
         self.eval("tk::PlaceWindow . center")
+        #self.iconbitmap('./assets/pythontutorial.ico')
+
 
 
 if __name__ == "__main__":

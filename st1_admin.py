@@ -4,7 +4,7 @@ import pickle
 from tkinter import messagebox as msg
 
 
-def st1_admin_line(my_frame1):
+def st1_admin_line(my_frame1, admin_screen):
 
         # Steel id
         steel_id = Label(my_frame1, text="ID:", )
@@ -129,7 +129,7 @@ def st1_admin_line(my_frame1):
             try:
                 with open("st1_storage.pickle", "wb") as f:
                     pickle.dump(material_in_str.get(), f)
-                    material_in_storage.configure(text=material_in_str.get())
+
             except Exception as ex:
                 print("Error during pickling object (Possibly unsupported):", ex)
 
@@ -140,9 +140,15 @@ def st1_admin_line(my_frame1):
         material_in_label = Label(my_frame1, text="Material in storage:")
         material_in_label.grid(column=8, row=0)
 
-        # Material in storage.
-        material_in_storage = Label(my_frame1, text=material_in)
-        material_in_storage.grid(column=8, row=1, sticky=W)
+        def update_storage():
+            load_pickle = open("st1_storage.pickle", "rb")
+            material_in = pickle.load(load_pickle)
+
+            material_in_storage = Label(my_frame1, text=material_in)
+            material_in_storage['text'] = material_in
+            material_in_storage.grid(column=8, row=1, sticky=W)
+            admin_screen.after(800, update_storage)
+        update_storage()
 
         # Spinbox order.
         material_in_str = IntVar()
@@ -179,7 +185,7 @@ def st1_admin_line(my_frame1):
 
                     with open("st1_storage.pickle", "wb") as w:
                         pickle.dump(total, w)
-                        material_in_storage.configure(text=total)
+
 
                 except Exception as ex:
                     print("Error during unpickling object (Possibly unsupported):", ex)
@@ -207,7 +213,6 @@ def st1_admin_line(my_frame1):
 
                     with open("st1_storage.pickle", "wb") as w:
                         pickle.dump(total, w)
-                        material_in_storage.configure(text=total)
 
                 except Exception as ex:
                     print("Error during unpickling object (Possibly unsupported):", ex)
