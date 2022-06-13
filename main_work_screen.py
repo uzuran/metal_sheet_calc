@@ -1,7 +1,5 @@
 from tkinter import *
 from tkinter import ttk
-import pickle
-from tkinter import messagebox as msg
 from st1_user import st1_user_line
 
 
