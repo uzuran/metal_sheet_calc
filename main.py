@@ -110,9 +110,12 @@ class MainFrame(ttk.Frame):
         # Command for button
         register_user_button['command'] = self.register_users
         register_user_button.pack()
+        # Bind Enter key for entry lines.
+        user_name_entry.bind("<Return>", self.register_users)
+        pass_entry.bind("<Return>", self.register_users)
 
     # Register user and add all information inside text document.
-    def register_users(self):
+    def register_users(self, event):
         """Function for register new users, validate name without numbers,store all info in text file, hash password."""
         username_info = user_name.get()
         password_info = password.get()
@@ -202,10 +205,13 @@ class MainFrame(ttk.Frame):
         login_user_button = Button(self.login_screen, **login_btn_option)
         # Command for button
         login_user_button['command'] = self.login_verify
+        # user_pass_entry bind for enter use.
+        user_pass_entry2.bind("<Return>", self.login_verify)
+        user_name_entry1.bind("<Return>", self.login_verify)
         login_user_button.pack()
 
     # Login verify function for check users.
-    def login_verify(self):
+    def login_verify(self, event):
         user_name_v = user_name_verify.get()
         password_v = user_pass_verify.get()
         # Clean entry after press the button.
