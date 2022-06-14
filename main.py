@@ -5,7 +5,8 @@ from tkinter import *
 from tkinter import ttk
 import hashlib
 import os
-
+import os.path
+from os import path
 
 class MainFrame(ttk.Frame):
     """This is the basic MainFrame(app)"""
@@ -218,21 +219,25 @@ class MainFrame(ttk.Frame):
 
         # If user are in directory read lines and verify.
         if user_name_v == "admin":
+            activator = True
+            if path.exists(user_name_v) == activator:
 
-            file1 = open(user_name_v, "r")
-            verify = file1.read().splitlines()
+                file1 = open(user_name_v, "r")
+                verify = file1.read().splitlines()
 
-            if password_v in verify:
+                if password_v in verify:
 
-                pass_success_option = {"text": "Login success",
+                    pass_success_option = {"text": "Login success",
                                        "fg": "green",
                                        "font": "Calibri, 12"}
 
-                pass_success = Label(self.login_screen, ** pass_success_option)
-                pass_success.pack()
+                    pass_success = Label(self.login_screen, ** pass_success_option)
+                    pass_success.pack()
 
-                # Add next file with the func main screen,space for better reading code, main_work_screen.py.
-                admin_screen(user_name_v)
+                    # Add next file with the func main screen,space for better reading code, main_work_screen.py.
+                    admin_screen(user_name_v)
+            else:
+                Label(self.login_screen, text='Admin not exist!', fg='red').pack()
 
         elif user_name_v in list_of_users:
             file1 = open(user_name_v, "r")
