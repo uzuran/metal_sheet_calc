@@ -133,8 +133,6 @@ def st1_admin_line(my_frame1, admin_screen):
             except Exception as ex:
                 print("Error during pickling object (Possibly unsupported):", ex)
 
-        load_pickle = open("st1_storage.pickle", "rb")
-        material_in = pickle.load(load_pickle)
 
         # Label Material in storage.
         material_in_label = Label(my_frame1, text="Material in storage:")
