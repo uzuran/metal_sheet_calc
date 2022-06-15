@@ -142,7 +142,7 @@ def st1_admin_line(my_frame1, admin_screen):
             load_pickle = open("st1_storage.pickle", "rb")
             material_in = pickle.load(load_pickle)
 
-            material_in_storage = Label(my_frame1, text=material_in)
+            material_in_storage = Label(my_frame1)
             material_in_storage['text'] = material_in
             material_in_storage.grid(column=8, row=1, sticky=W)
             admin_screen.after(800, update_storage)
