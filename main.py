@@ -115,7 +115,7 @@ class MainFrame(ttk.Frame):
         pass_entry.bind("<Return>", self.register_users)
 
     # Register user and add all information inside text document.
-    def register_users(self, event):
+    def register_users(self, event=None):
         """Function for register new users, validate name without numbers,store all info in text file, hash password."""
         username_info = user_name.get()
         password_info = password.get()
@@ -211,7 +211,7 @@ class MainFrame(ttk.Frame):
         login_user_button.pack()
 
     # Login verify function for check users.
-    def login_verify(self, event):
+    def login_verify(self, event=None):
         user_name_v = user_name_verify.get()
         password_v = user_pass_verify.get()
         # Clean entry after press the button.
