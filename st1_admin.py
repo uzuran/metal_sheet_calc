@@ -40,13 +40,17 @@ def st1_admin_line(my_frame1, admin_screen):
             if answer == activator:
 
                 try:
-                    order_pickle = open("st1.pickle", "rb")
-                    from_pickle = pickle.load(order_pickle)
-                    total = from_pickle - variable.get()
+                    if variable.get() == "":
+                        print('Error')
+                    else:
 
-                    with open("st1.pickle", "wb") as w:
-                        pickle.dump(total, w)
-                        ordered_value.configure(text=total)
+                        order_pickle = open("st1.pickle", "rb")
+                        from_pickle = pickle.load(order_pickle)
+                        total = from_pickle - variable.get()
+
+                        with open("st1.pickle", "wb") as w:
+                            pickle.dump(total, w)
+                            ordered_value.configure(text=total)
 
                 except Exception as ex:
                     print("Error during unpickling object (Possibly unsupported):", ex)
@@ -66,9 +70,11 @@ def st1_admin_line(my_frame1, admin_screen):
         # Add numbers of ordered material at pickle datastorage.
         def add_to_order_pickle():
             try:
-                with open("st1.pickle", "wb") as f:
-                    pickle.dump(variable.get(), f)
-                    ordered_value.configure(text=variable.get())
+                if variable.get() == "":
+                    print('Error')
+                    with open("st1.pickle", "wb") as f:
+                        pickle.dump(variable.get(), f)
+                        ordered_value.configure(text=variable.get())
 
             except Exception as ex:
                 print("Error during pickling object (Possibly unsupported):", ex)
@@ -82,13 +88,16 @@ def st1_admin_line(my_frame1, admin_screen):
         # Add plus function, for addition material at order.
         def plus():
             try:
-                order_pickle = open("st1.pickle", "rb")
-                from_pickle = pickle.load(order_pickle)
-                total = from_pickle + variable.get()
+                if variable.get() == "":
+                    print('Error')
+                else:
+                    order_pickle = open("st1.pickle", "rb")
+                    from_pickle = pickle.load(order_pickle)
+                    total = from_pickle + variable.get()
 
-                with open("st1.pickle", "wb") as w:
-                    pickle.dump(total, w)
-                    ordered_value.configure(text=total)
+                    with open("st1.pickle", "wb") as w:
+                        pickle.dump(total, w)
+                        ordered_value.configure(text=total)
 
             except Exception as ex:
                 print("Error during unpickling object (Possibly unsupported):", ex)
@@ -125,9 +134,13 @@ def st1_admin_line(my_frame1, admin_screen):
         # Add numbers of ordered material at pickle datastorage.
         def add_to_storage():
             try:
-                with open("st1_storage.pickle", "wb") as f:
-                    pickle.dump(material_in_str.get(), f)
-                    material_in_storage.config(text=material_in_str.get())
+                if material_in_str.get() == "":
+                    print('Error')
+                else:
+
+                    with open("st1_storage.pickle", "wb") as f:
+                        pickle.dump(material_in_str.get(), f)
+                        material_in_storage.config(text=material_in_str.get())
 
             except Exception as ex:
                 print("Error during pickling object (Possibly unsupported):", ex)
@@ -180,13 +193,16 @@ def st1_admin_line(my_frame1, admin_screen):
             if answer == activator:
 
                 try:
-                    storage_pickle = open("st1_storage.pickle", "rb")
-                    from_pickle = pickle.load(storage_pickle)
-                    total = from_pickle + material_in_str.get()
+                    if material_in_str.get() == "":
+                        print('Error')
+                    else:
+                        storage_pickle = open("st1_storage.pickle", "rb")
+                        from_pickle = pickle.load(storage_pickle)
+                        total = from_pickle + material_in_str.get()
 
-                    with open("st1_storage.pickle", "wb") as w:
-                        pickle.dump(total, w)
-                        material_in_storage.config(text=total)
+                        with open("st1_storage.pickle", "wb") as w:
+                            pickle.dump(total, w)
+                            material_in_storage.config(text=total)
 
                 except Exception as ex:
                     print("Error during unpickling object (Possibly unsupported):", ex)
@@ -209,13 +225,16 @@ def st1_admin_line(my_frame1, admin_screen):
             if answer == activator:
 
                 try:
-                    order_pickle = open("st1_storage.pickle", "rb")
-                    from_pickle = pickle.load(order_pickle)
-                    total = from_pickle - material_in_str.get()
+                    if material_in_str.get() == "":
+                        print('Error')
+                    else:
+                        order_pickle = open("st1_storage.pickle", "rb")
+                        from_pickle = pickle.load(order_pickle)
+                        total = from_pickle - material_in_str.get()
 
-                    with open("st1_storage.pickle", "wb") as w:
-                        pickle.dump(total, w)
-                        material_in_storage.config(text=total)
+                        with open("st1_storage.pickle", "wb") as w:
+                            pickle.dump(total, w)
+                            material_in_storage.config(text=total)
 
                 except Exception as ex:
                     print("Error during unpickling object (Possibly unsupported):", ex)
