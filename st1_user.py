@@ -42,10 +42,15 @@ def st1_user_line(my_frame1, main_work_screen):
         load_pickle = open("st1.pickle", "rb")
         load_order = pickle.load(load_pickle)
 
-        ordered_value = Label(my_frame1)
-        ordered_value.grid(column=5, row=1)
-        ordered_value['text'] = load_order
+        ordered_value.config(text=load_order)
         main_work_screen.after(800, update_order)
+
+    load_pickle = open("st1.pickle", "rb")
+    load_order = pickle.load(load_pickle)
+
+    ordered_value = Label(my_frame1)
+    ordered_value.grid(column=5, row=1)
+    ordered_value['text'] = load_order
 
     update_order()
 
@@ -53,18 +58,24 @@ def st1_user_line(my_frame1, main_work_screen):
     material_in_label = Label(my_frame1, text="Material in storage:")
     material_in_label.grid(column=6, row=0)
 
+    # Update material in storage, main work screen.
     def update_storage():
         load_pickle = open("st1_storage.pickle", "rb")
         material_in = pickle.load(load_pickle)
-
-        material_in_storage = Label(my_frame1, text=material_in)
-        material_in_storage['text'] = material_in
-        material_in_storage.grid(column=6, row=1, sticky=W)
+        material_in_storage.config(text=material_in)
         main_work_screen.after(800, update_storage)
+
+    load_pickle = open("st1_storage.pickle", "rb")
+    material_in = pickle.load(load_pickle)
+
+    # Material in storage label.
+    material_in_storage = Label(my_frame1, text=material_in)
+    material_in_storage['text'] = material_in
+    material_in_storage.grid(column=6, row=1, sticky=W)
 
     update_storage()
 
-    # Spinbox order.
+    # Spinbox for material in storage.
     material_in_str = IntVar()
     spin_box = ttk.Spinbox(
         my_frame1,
@@ -75,7 +86,7 @@ def st1_user_line(my_frame1, main_work_screen):
     )
     spin_box.grid(column=6, row=1, sticky=E)
 
-    # Add plus function, for addition material at storage.
+    # Add plus function, for addition material at storage with message box yes/no.
     def increase_material_in_str():
         answer = msg.askyesno("Back to storage",
                               f"Are you sure that you want back {material_in_str.get()}"
@@ -105,9 +116,11 @@ def st1_user_line(my_frame1, main_work_screen):
     back_to_storage['command'] = increase_material_in_str
     back_to_storage.grid(column=7, row=1)
 
+    # Write off material from storage with messagebox yes/no.
     def write_off_material():
         answer = msg.askyesno("Write off material",
-                              f"Are you sure that you want write off this {material_in_str.get()} item of material?")
+                              f"Are you sure that you want write off this"
+                              f" {material_in_str.get()} item of material?")
         activator = True
         if answer == activator:
 
@@ -124,7 +137,7 @@ def st1_user_line(my_frame1, main_work_screen):
         else:
             msg.showinfo(title="Write off canceling", message="Write off canceling you can back to work.")
 
-    # Write off the material from storage
+    # Write off the material from storage label, button.
     back_to_storage_label = Label(my_frame1, text="Write off")
     back_to_storage_label.grid(column=8, row=0)
     back_to_storage = Button(my_frame1, text="-")
