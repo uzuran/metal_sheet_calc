@@ -8,6 +8,7 @@ import os
 import os.path
 from os import path
 
+
 class MainFrame(ttk.Frame):
     """This is the basic MainFrame(app)"""
     def __init__(self, container):

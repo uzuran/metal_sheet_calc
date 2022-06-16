@@ -72,6 +72,7 @@ def st1_admin_line(my_frame1, admin_screen):
             try:
                 if variable.get() == "":
                     print('Error')
+                else:
                     with open("st1.pickle", "wb") as f:
                         pickle.dump(variable.get(), f)
                         ordered_value.configure(text=variable.get())
@@ -136,8 +137,8 @@ def st1_admin_line(my_frame1, admin_screen):
             try:
                 if material_in_str.get() == "":
                     print('Error')
-                else:
 
+                else:
                     with open("st1_storage.pickle", "wb") as f:
                         pickle.dump(material_in_str.get(), f)
                         material_in_storage.config(text=material_in_str.get())
