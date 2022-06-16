@@ -76,6 +76,7 @@ class MainFrame(ttk.Frame):
             "font": "Calibri, 12"
         }
 
+
         # Register window label.
         register_label = Label(self.register_window, **register_label_option)
         register_label.pack()
