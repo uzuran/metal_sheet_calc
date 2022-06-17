@@ -34,16 +34,11 @@ def st1_admin_line(my_frame1, admin_screen):
         steel_y.grid(column=3, row=1)
 
         def minus():
-            answer = msg.askyesno("Write off material",
-                                  f"Are you sure that you want write off this {variable.get()} item of material?")
-            activator = True
-            if answer == activator:
-
                 try:
-                    if variable.get() == "":
-                        print('Error')
-                    else:
-
+                    answer = msg.askyesno("Write off material",
+                                          f"Are you sure that you want write off this {variable.get()} item of material?")
+                    activator = True
+                    if answer == activator:
                         order_pickle = open("st1.pickle", "rb")
                         from_pickle = pickle.load(order_pickle)
                         total = from_pickle - variable.get()
@@ -51,11 +46,13 @@ def st1_admin_line(my_frame1, admin_screen):
                         with open("st1.pickle", "wb") as w:
                             pickle.dump(total, w)
                             ordered_value.configure(text=total)
+                    else:
+                        msg.showinfo(title="Write off canceling", message="Write off canceling you can back to work.")
 
                 except Exception as ex:
                     print("Error during unpickling object (Possibly unsupported):", ex)
-            else:
-                msg.showinfo(title="Write off canceling", message="Write off canceling you can back to work.")
+
+
         # Button minus.
         steel_minus = Label(my_frame1, text="btn - ")
         steel_minus.grid(column=4, row=0)
