@@ -187,16 +187,15 @@ def st1_admin_line(my_frame1, admin_screen):
 
         # Add plus function, for addition material at storage with message box yes/no.
         def increase_material_in_str():
-            answer = msg.askyesno("Back to storage",
-                                  f"Are you sure that you want back {material_in_str.get()}"
-                                  f" item of material to the storage?")
-            activator = True
-            if answer == activator:
 
                 try:
-                    if material_in_str.get() == "":
-                        print('Error')
-                    else:
+                    answer = msg.askyesno("Back to storage",
+                                          f"Are you sure that you want back {material_in_str.get()}"
+                                          f" item of material to the storage?")
+
+                    activator = True
+                    if answer == activator:
+
                         storage_pickle = open("st1_storage.pickle", "rb")
                         from_pickle = pickle.load(storage_pickle)
                         total = from_pickle + material_in_str.get()
@@ -204,13 +203,13 @@ def st1_admin_line(my_frame1, admin_screen):
                         with open("st1_storage.pickle", "wb") as w:
                             pickle.dump(total, w)
                             material_in_storage.config(text=total)
-
+                    else:
+                        msg.showinfo(title="Back to storage canceling",
+                                     message="Back to storage"
+                                             "canceling you can back to work.")
                 except Exception as ex:
-                    print("Error during unpickling object (Possibly unsupported):", ex)
-            else:
-                msg.showinfo(title="Back to storage canceling",
-                             message="Back to storage"
-                                     "canceling you can back to work.")
+                    print("Error during (Possibly unsupported):", ex)
+
         # Back to storage
         back_to_storage_label = Label(my_frame1, text="Back to storage")
         back_to_storage_label.grid(column=10, row=0)
@@ -220,27 +219,24 @@ def st1_admin_line(my_frame1, admin_screen):
 
         # Write off material from the storage with message box yes/no.
         def write_off_material():
-            answer = msg.askyesno("Write off material",
-                                  f"Are you sure that you want write off this {material_in_str.get()} item of material?")
-            activator = True
-            if answer == activator:
+            try:
+                answer = msg.askyesno("Write off material",
+                                      f"Are you sure that you want write off this {material_in_str.get()}"
+                                      f" item of material?")
+                activator = True
+                if answer == activator:
 
-                try:
-                    if material_in_str.get() == "":
-                        print('Error')
-                    else:
-                        order_pickle = open("st1_storage.pickle", "rb")
-                        from_pickle = pickle.load(order_pickle)
-                        total = from_pickle - material_in_str.get()
+                    order_pickle = open("st1_storage.pickle", "rb")
+                    from_pickle = pickle.load(order_pickle)
+                    total = from_pickle - material_in_str.get()
+                    with open("st1_storage.pickle", "wb") as w:
+                        pickle.dump(total, w)
+                        material_in_storage.config(text=total)
+                else:
+                    msg.showinfo(title="Write off canceling", message="Write off canceling you can back to work.")
 
-                        with open("st1_storage.pickle", "wb") as w:
-                            pickle.dump(total, w)
-                            material_in_storage.config(text=total)
-
-                except Exception as ex:
-                    print("Error during unpickling object (Possibly unsupported):", ex)
-            else:
-                msg.showinfo(title="Write off canceling", message="Write off canceling you can back to work.")
+            except Exception as ex:
+                print("Error during (Possibly unsupported):", ex)
 
         # Write off the material from storage
         back_to_storage_label = Label(my_frame1, text="Write off")
