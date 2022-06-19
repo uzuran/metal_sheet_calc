@@ -35,6 +35,7 @@ def st1_admin_line(my_frame1, admin_screen):
 
         def minus():
                 try:
+
                     answer = msg.askyesno("Write off material",
                                           f"Are you sure that you want write off this {variable.get()} item of material?")
                     activator = True

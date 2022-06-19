@@ -77,26 +77,27 @@ def st1_user_line(my_frame1, main_work_screen):
 
     # Add plus function, for addition material at storage.
     def increase_material_in_str():
-        answer = msg.askyesno("Back to storage",
-                              f"Are you sure that you want back {material_in_str.get()}"
-                              f" item of material to the storage?")
-        activator = True
-        if answer == activator:
 
             try:
-                storage_pickle = open("st1_storage.pickle", "rb")
-                from_pickle = pickle.load(storage_pickle)
-                total = from_pickle + material_in_str.get()
+                answer = msg.askyesno("Back to storage",
+                                      f"Are you sure that you want back {material_in_str.get()}"
+                                      f" item of material to the storage?")
+                activator = True
+                if answer == activator:
 
-                with open("st1_storage.pickle", "wb") as w:
-                    pickle.dump(total, w)
+                    storage_pickle = open("st1_storage.pickle", "rb")
+                    from_pickle = pickle.load(storage_pickle)
+                    total = from_pickle + material_in_str.get()
 
+                    with open("st1_storage.pickle", "wb") as w:
+                        pickle.dump(total, w)
+                else:
+                    msg.showinfo(title="Back to storage canceling",
+                                 message="Back to storage"
+                                         "canceling you can back to work.")
             except Exception as ex:
                 print("Error during unpickling object (Possibly unsupported):", ex)
-        else:
-            msg.showinfo(title="Back to storage canceling",
-                         message="Back to storage"
-                                 "canceling you can back to work.")
+
 
     # Back to storage
     back_to_storage_label = Label(my_frame1, text="Back to storage")
@@ -106,23 +107,25 @@ def st1_user_line(my_frame1, main_work_screen):
     back_to_storage.grid(column=7, row=1)
 
     def write_off_material():
-        answer = msg.askyesno("Write off material",
-                              f"Are you sure that you want write off this {material_in_str.get()} item of material?")
-        activator = True
-        if answer == activator:
-
             try:
-                order_pickle = open("st1_storage.pickle", "rb")
-                from_pickle = pickle.load(order_pickle)
-                total = from_pickle - material_in_str.get()
 
-                with open("st1_storage.pickle", "wb") as w:
-                    pickle.dump(total, w)
+                answer = msg.askyesno("Write off material",
+                                      f"Are you sure that you want write off this {material_in_str.get()} item of material?")
+                activator = True
+                if answer == activator:
+
+                    order_pickle = open("st1_storage.pickle", "rb")
+                    from_pickle = pickle.load(order_pickle)
+                    total = from_pickle - material_in_str.get()
+
+                    with open("st1_storage.pickle", "wb") as w:
+                        pickle.dump(total, w)
+
+                else:
+                    msg.showinfo(title="Write off canceling", message="Write off canceling you can back to work.")
 
             except Exception as ex:
                 print("Error during unpickling object (Possibly unsupported):", ex)
-        else:
-            msg.showinfo(title="Write off canceling", message="Write off canceling you can back to work.")
 
     # Write off the material from storage
     back_to_storage_label = Label(my_frame1, text="Write off")
