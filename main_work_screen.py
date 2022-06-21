@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from st1_user import st1_user_line
+from write_off import show_who_write_off
 
 
 def main_work_space(user_name_v):
@@ -40,15 +41,17 @@ def main_work_space(user_name_v):
     my_frame2 = Frame(notebook, ** frame_options)
     my_frame3 = Frame(notebook, ** frame_options)
     my_frame4 = Frame(notebook, **frame_options)
+    my_frame5 = Frame(notebook, **frame_options)
 
     # Add notebook on screen.
     notebook.add(my_frame1, text="Steel material")
     notebook.add(my_frame2, text="Aluminium material")
     notebook.add(my_frame3, text="Stainless steel material")
     notebook.add(my_frame4, text="Special material")
+    notebook.add(my_frame5, text="Write off")
 
     # Add first line st1 steel material
-    st1_user_line(my_frame1, main_work_screen)
-
+    st1_user_line(my_frame1, main_work_screen, user_name_v)
+    show_who_write_off(my_frame5)
 
 

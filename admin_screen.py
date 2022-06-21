@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from st1_admin import st1_admin_line
-
+from write_off import show_who_write_off
 
 def admin_screen(user_name_v):
     admin_screen = Toplevel()
@@ -40,12 +40,14 @@ def admin_screen(user_name_v):
     my_frame2 = Frame(notebook, ** frame_options)
     my_frame3 = Frame(notebook, ** frame_options)
     my_frame4 = Frame(notebook, **frame_options)
+    my_frame5 = Frame(notebook, **frame_options)
 
     # Add notebook on screen.
     notebook.add(my_frame1, text="Steel material")
     notebook.add(my_frame2, text="Aluminium material")
     notebook.add(my_frame3, text="Stainless steel material")
     notebook.add(my_frame4, text="Special material")
+    notebook.add(my_frame5, text="Write off")
 
     st1_admin_line(my_frame1, admin_screen)
-
+    show_who_write_off(my_frame5)

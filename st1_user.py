@@ -2,9 +2,10 @@ from tkinter import *
 from tkinter import ttk
 import pickle
 from tkinter import messagebox as msg
+import datetime
 
 
-def st1_user_line(my_frame1, main_work_screen):
+def st1_user_line(my_frame1, main_work_screen, user_name_v):
     # Steel id
     steel_id = Label(my_frame1, text="ID:", )
     steel_id.grid(row=0)
@@ -98,7 +99,6 @@ def st1_user_line(my_frame1, main_work_screen):
             except Exception as ex:
                 print("Error during unpickling object (Possibly unsupported):", ex)
 
-
     # Back to storage
     back_to_storage_label = Label(my_frame1, text="Back to storage")
     back_to_storage_label.grid(column=7, row=0)
@@ -107,10 +107,11 @@ def st1_user_line(my_frame1, main_work_screen):
     back_to_storage.grid(column=7, row=1)
 
     def write_off_material():
-            try:
 
+            try:
                 answer = msg.askyesno("Write off material",
-                                      f"Are you sure that you want write off this {material_in_str.get()} item of material?")
+                                      f"Are you sure that you want write off this"
+                                      f" {material_in_str.get()} item of material?")
                 activator = True
                 if answer == activator:
 
@@ -120,7 +121,13 @@ def st1_user_line(my_frame1, main_work_screen):
 
                     with open("st1_storage.pickle", "wb") as w:
                         pickle.dump(total, w)
-
+                    with open("write_off", "a") as f:
+                        date_time = datetime.datetime.now()
+                        con_date = date_time.strftime("%X")
+                        t_day = datetime.date.today()
+                        f.write(f"{user_name_v} write off St-1-0116000 {material_in_str.get()} "
+                                f"items. {t_day} {con_date} \n")
+                        f.close()
                 else:
                     msg.showinfo(title="Write off canceling", message="Write off canceling you can back to work.")
 
