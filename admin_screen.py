@@ -3,6 +3,7 @@ from tkinter import ttk
 from st1_admin import st1_admin_line
 from write_off import show_who_write_off
 
+
 def admin_screen(user_name_v):
     admin_screen = Toplevel()
     admin_screen.title("Steel sheet calculator.")
