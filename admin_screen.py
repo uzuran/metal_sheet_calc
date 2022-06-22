@@ -26,8 +26,11 @@ def admin_screen_window(user_name_v):
     # Check users,  who is log in.
     user_name_label = user_name_v
 
-    check_user = Label(admin_screen, text=str(user_name_label) + " Is log in now.", bg="green")
-    check_user.pack(anchor="w")
+    check_user = Label(admin_screen, text=str(user_name_label.capitalize()) + " Is log in now.",
+                       fg="green",
+                       font="Arial",
+                       )
+    check_user.pack(anchor="e")
 
     # <-- SCROLL BAR -->
 
