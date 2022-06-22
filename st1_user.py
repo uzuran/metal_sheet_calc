@@ -125,7 +125,7 @@ def st1_user_line(my_frame1, main_work_screen, user_name_v):
                         date_time = datetime.datetime.now()
                         con_date = date_time.strftime("%X")
                         t_day = datetime.date.today()
-                        f.write(f"{user_name_v} write off St-1-0116000 {material_in_str.get()} "
+                        f.write(f"{user_name_v} write off 0116000-St-1-2000-1000 {material_in_str.get()} "
                                 f"items. {t_day} {con_date} \n")
                         f.close()
                 else:

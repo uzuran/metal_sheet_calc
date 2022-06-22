@@ -1,6 +1,6 @@
 import tkinter as tk
 from main_work_screen import main_work_space
-from admin_screen import admin_screen
+from admin_screen import admin_screen_window
 from tkinter import *
 from tkinter import ttk
 import hashlib
@@ -12,7 +12,7 @@ from os import path
 class MainFrame(ttk.Frame):
     """This is the basic MainFrame(app)"""
     def __init__(self, container):
-        super().__init__(container)
+        super().__init__(container, )
 
         options = {"padx": 5, "pady": 5}
         enter_label_options = {"text": "Please login, or register.",
@@ -243,7 +243,7 @@ class MainFrame(ttk.Frame):
                     pass_success.pack()
 
                     # Add next file with the func main screen,space for better reading code, main_work_screen.py.
-                    admin_screen(user_name_v)
+                    admin_screen_window(user_name_v)
             else:
                 Label(self.login_screen, text='Admin not exist!', fg='red').pack()
 

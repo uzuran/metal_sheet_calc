@@ -52,6 +52,6 @@ def main_work_space(user_name_v):
 
     # Add first line st1 steel material
     st1_user_line(my_frame1, main_work_screen, user_name_v)
-    show_who_write_off(my_frame5)
+    show_who_write_off(my_frame5, main_work_screen)
 
 

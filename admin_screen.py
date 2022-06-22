@@ -1,10 +1,10 @@
 from tkinter import *
 from tkinter import ttk
 from st1_admin import st1_admin_line
-from write_off import show_who_write_off
+from update_write_off_admin_screen import show_who_write_off_admin
 
 
-def admin_screen(user_name_v):
+def admin_screen_window(user_name_v):
     admin_screen = Toplevel()
     admin_screen.title("Steel sheet calculator.")
 
@@ -50,5 +50,6 @@ def admin_screen(user_name_v):
     notebook.add(my_frame4, text="Special material")
     notebook.add(my_frame5, text="Write off")
 
-    st1_admin_line(my_frame1, admin_screen)
-    show_who_write_off(my_frame5)
+    st1_admin_line(my_frame1, admin_screen, user_name_v)
+    show_who_write_off_admin(my_frame5, admin_screen)
+

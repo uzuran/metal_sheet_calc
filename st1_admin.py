@@ -2,9 +2,9 @@ from tkinter import *
 from tkinter import ttk
 import pickle
 from tkinter import messagebox as msg
+import datetime
 
-
-def st1_admin_line(my_frame1, admin_screen):
+def st1_admin_line(my_frame1, admin_screen, user_name_v):
 
         # Steel id
         steel_id = Label(my_frame1, text="ID:", )
@@ -230,6 +230,14 @@ def st1_admin_line(my_frame1, admin_screen):
                     with open("st1_storage.pickle", "wb") as w:
                         pickle.dump(total, w)
                         material_in_storage.config(text=total)
+
+                    with open("write_off", "a") as f:
+                        date_time = datetime.datetime.now()
+                        con_date = date_time.strftime("%X")
+                        t_day = datetime.date.today()
+                        f.write(f"{user_name_v} write off 0116000-St-1-2000-1000 {material_in_str.get()} "
+                                f"items. {t_day} {con_date} \n")
+                        f.close()
                 else:
                     msg.showinfo(title="Write off canceling", message="Write off canceling you can back to work.")
 
