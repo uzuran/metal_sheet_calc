@@ -163,6 +163,7 @@ def st1_admin_line(my_frame1, admin_screen, user_name_v):
         material_in_storage.grid(column=8, row=1, sticky=W)
 
         update_mat_in_stor()
+
         # Spinbox order.
         material_in_str = IntVar()
         spin_box = ttk.Spinbox(

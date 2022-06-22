@@ -42,11 +42,16 @@ def st1_user_line(my_frame1, main_work_screen, user_name_v):
     def update_order():
         load_pickle = open("st1.pickle", "rb")
         load_order = pickle.load(load_pickle)
-
-        ordered_value = Label(my_frame1)
-        ordered_value.grid(column=5, row=1)
-        ordered_value['text'] = load_order
+        ordered_value.configure(text=load_order)
         main_work_screen.after(800, update_order)
+
+    load_pickle = open("st1.pickle", "rb")
+    load_order = pickle.load(load_pickle)
+
+    ordered_value = Label(my_frame1)
+    ordered_value.grid(column=5, row=1)
+    ordered_value['text'] = load_order
+    main_work_screen.after(800, update_order)
 
     update_order()
 
@@ -57,11 +62,15 @@ def st1_user_line(my_frame1, main_work_screen, user_name_v):
     def update_storage():
         load_pickle = open("st1_storage.pickle", "rb")
         material_in = pickle.load(load_pickle)
-
-        material_in_storage = Label(my_frame1, text=material_in)
-        material_in_storage['text'] = material_in
-        material_in_storage.grid(column=6, row=1, sticky=W)
+        material_in_storage.config(text=material_in)
         main_work_screen.after(800, update_storage)
+
+    load_pickle = open("st1_storage.pickle", "rb")
+    material_in = pickle.load(load_pickle)
+
+    material_in_storage = Label(my_frame1, text=material_in)
+    material_in_storage['text'] = material_in
+    material_in_storage.grid(column=6, row=1, sticky=W)
 
     update_storage()
 
