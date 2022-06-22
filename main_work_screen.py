@@ -26,8 +26,10 @@ def main_work_space(user_name_v):
     # Check users,  who is log in.
     user_name_label = user_name_v
 
-    check_user = Label(main_work_screen, text=str(user_name_label) + " Is log in now..", bg="green")
-    check_user.pack(anchor="w")
+    check_user = Label(main_work_screen, text=str(user_name_label) + " Is log in now.",
+                       fg="green",
+                       font="Arial",)
+    check_user.pack(anchor="e")
 
     # Add notebook of a materials.
     notebook = ttk.Notebook(main_work_screen)
