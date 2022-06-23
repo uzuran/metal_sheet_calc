@@ -90,9 +90,6 @@ class MainFrame(ttk.Frame):
         user_name_entry = Entry(self.register_window, textvariable=user_name)
         user_name_entry.pack()
 
-        # Blank line.
-        Label(self.register_window, text="").pack()
-
         # Password label.
         pass_label = Label(self.register_window, text="Password")
         pass_label.pack()

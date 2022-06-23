@@ -36,7 +36,7 @@ def admin_screen_window(user_name_v):
     # <-- SCROLL BAR -->
 
     # Create a canvas.
-    my_canvas = Canvas(admin_screen)
+    my_canvas = Canvas(admin_screen, width=150, height=40, bd=0, highlightthickness=0, relief='ridge')
     my_canvas.pack(side=LEFT, fill=BOTH, expand=1)
     # Add scrollbar to the canvas.
     scroll_bar = Scrollbar(admin_screen, orient=VERTICAL, command=my_canvas.yview)
@@ -48,6 +48,12 @@ def admin_screen_window(user_name_v):
     second_frame = Frame(my_canvas)
     # Add a new frame to the  window in canvas
     my_canvas.create_window((0, 0), window=second_frame, anchor="nw")
+
+    # MouseWheel
+    def _on_mousewheel(event):
+        my_canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
+
+    my_canvas.bind_all("<MouseWheel>", _on_mousewheel)
 
     # Add notebook of a materials to the second frame.
     notebook = ttk.Notebook(second_frame)

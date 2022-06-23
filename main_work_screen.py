@@ -31,9 +31,32 @@ def main_work_space(user_name_v):
                        font="Arial",)
     check_user.pack(anchor="e")
 
+
+    # <-- SCROLL BAR -->
+
+    # Create a canvas.
+    my_canvas = Canvas(main_work_screen, width=150, height=40, bd=0, highlightthickness=0, relief='ridge')
+    my_canvas.pack(side=LEFT, fill=BOTH, expand=1)
+    # Add scrollbar to the canvas.
+    scroll_bar = Scrollbar(main_work_screen, orient=VERTICAL, command=my_canvas.yview)
+    scroll_bar.pack(side=RIGHT, fill=Y)
+    # Configure the Canvas.
+    my_canvas.config(yscrollcommand=scroll_bar.set)
+    my_canvas.bind("<Configure>", lambda e: my_canvas.configure(scrollregion=my_canvas.bbox("all")))
+    # Make new frame.
+    second_frame = Frame(my_canvas)
+    # Add a new frame to the  window in canvas
+    my_canvas.create_window((0, 0), window=second_frame, anchor="nw")
+
+    # MouseWheel
+    def _on_mousewheel(event):
+        my_canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
+
+    my_canvas.bind_all("<MouseWheel>", _on_mousewheel)
+
     # Add notebook of a materials.
-    notebook = ttk.Notebook(main_work_screen)
-    notebook.pack(anchor='center')
+    notebook = ttk.Notebook(second_frame)
+    notebook.pack()
 
     # Add frame options.
     frame_options = {"width": "500",
@@ -54,6 +77,6 @@ def main_work_space(user_name_v):
 
     # Add first line st1 steel material
     st1_user_line(my_frame1, main_work_screen, user_name_v)
-    show_who_write_off(my_frame5, main_work_screen)
+    show_who_write_off(main_work_screen, my_frame5)
 
 
