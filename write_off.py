@@ -14,7 +14,7 @@ def show_who_write_off(main_work_screen, my_frame5):
 
     write_off_label = Label(my_frame5, fg="red")
     write_off_label['text'] = read_write
-    write_off_label.grid(row=0)
+    write_off_label.grid(row=0, padx=50)
 
     update_write_off_screen()
 

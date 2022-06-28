@@ -4,8 +4,8 @@ import pickle
 from tkinter import messagebox as msg
 import datetime
 
-def st1_admin_line(my_frame1, admin_screen, user_name_v):
 
+def st1_admin_line(my_frame1, admin_screen, user_name_v):
         # Steel id
         steel_id = Label(my_frame1, text="ID:", )
         steel_id.grid(row=0)
@@ -52,7 +52,6 @@ def st1_admin_line(my_frame1, admin_screen, user_name_v):
 
                 except Exception as ex:
                     print("Error during unpickling object (Possibly unsupported):", ex)
-
 
         # Button minus.
         steel_minus = Label(my_frame1, text="btn - ")
@@ -232,13 +231,14 @@ def st1_admin_line(my_frame1, admin_screen, user_name_v):
                         pickle.dump(total, w)
                         material_in_storage.config(text=total)
 
-                    with open("write_off", "a") as f:
+                    with open("write_off", "r+") as f:
+                        content = f.read()
+                        f.seek(0)
                         date_time = datetime.datetime.now()
                         con_date = date_time.strftime("%X")
                         t_day = datetime.date.today()
-                        f.write(f"{user_name_v.capitalize()} write off 0116000-St-1-2000-1000 "
-                                f"{material_in_str.get()} "
-                                f"items. {t_day} {con_date} \n")
+                        f.write(f"{user_name_v.capitalize()} write off 0116000-St-1-2000-1000 {material_in_str.get()} "
+                                f"items. {t_day} {con_date} \n {content}")
                         f.close()
                 else:
                     msg.showinfo(title="Write off canceling", message="Write off canceling you can back to work.")

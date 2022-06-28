@@ -240,7 +240,10 @@ class MainFrame(ttk.Frame):
                     pass_success.pack()
 
                     # Add next file with the func main screen,space for better reading code, main_work_screen.py.
+
                     admin_screen_window(user_name_v)
+                elif user_name_v == "admin":
+                    Label(self.login_screen, text='You need a password!', fg='red').pack()
             else:
                 Label(self.login_screen, text='Admin not exist!', fg='red').pack()
 

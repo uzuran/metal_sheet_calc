@@ -56,7 +56,7 @@ def main_work_space(user_name_v):
 
     # Add notebook of a materials.
     notebook = ttk.Notebook(second_frame)
-    notebook.pack()
+    notebook.pack(padx=400)
 
     # Add frame options.
     frame_options = {"width": "500",

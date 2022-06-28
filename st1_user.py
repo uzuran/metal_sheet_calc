@@ -87,7 +87,6 @@ def st1_user_line(my_frame1, main_work_screen, user_name_v):
 
     # Add plus function, for addition material at storage.
     def increase_material_in_str():
-
             try:
                 answer = msg.askyesno("Back to storage",
                                       f"Are you sure that you want back {material_in_str.get()}"
@@ -115,6 +114,7 @@ def st1_user_line(my_frame1, main_work_screen, user_name_v):
     back_to_storage['command'] = increase_material_in_str
     back_to_storage.grid(column=7, row=1)
 
+    # Write off material
     def write_off_material():
 
             try:
@@ -130,12 +130,14 @@ def st1_user_line(my_frame1, main_work_screen, user_name_v):
 
                     with open("st1_storage.pickle", "wb") as w:
                         pickle.dump(total, w)
-                    with open("write_off", "a") as f:
+                    with open("write_off", "r+") as f:
+                        content = f.read()
+                        f.seek(0)
                         date_time = datetime.datetime.now()
                         con_date = date_time.strftime("%X")
                         t_day = datetime.date.today()
                         f.write(f"{user_name_v.capitalize()} write off 0116000-St-1-2000-1000 {material_in_str.get()} "
-                                f"items. {t_day} {con_date} \n")
+                                f"items. {t_day} {con_date} \n {content}")
                         f.close()
                 else:
                     msg.showinfo(title="Write off canceling", message="Write off canceling you can back to work.")
